@@ -1,0 +1,106 @@
+{
+	"sourceRoot": "./",
+	"targetRoot": "./build",
+	"fileFormat": "js,css,html,htm,png,gif,jpg,jpeg,wav,json",
+	// "debug": true,
+	"cmds": {
+		"concat_compress": "concat|compress",
+		"translate": {
+			"id": "translate",
+			"root": "./custom_cmds/translate/"
+		}
+	},
+	"rules": {
+		"copy_html": {
+			"cmd": "copy",
+			"target": "./",
+			"source": "./",
+			"params": {
+				"fileFormat": "html",
+				"recursive": false
+			}
+		},
+		"translate_html": {
+			"cmd": "translate|copy,compress",
+			"target": "./",
+			"source": "./",
+			"params": [
+				{
+					"htmls": [
+						"index.html",
+						"rank.html"
+					]
+				},
+				[{
+					"fileFormat": "html",
+					"keepHierarchy": false
+				},
+				{
+					"keepHierarchy": false
+				}]
+			]
+		},
+		"copy_other": {
+			"cmd": "copy",
+			"target": "./",
+			"source": [
+				"audio/",
+                "style/",
+                "robot/",
+                "doc/",
+                "data/",
+                "favicon.ico"
+			]
+		},
+		"copy_ace_worker": {
+			"cmd": "copy",
+			"target": "./",
+			"source": [
+                "js/ace/worker-javascript.js"
+			],
+			"params": {
+				"keepHierarchy": false
+			}
+		},
+		"compress_coppy": {
+			"cmd": "compress",
+			"target": "./",
+			"source": [
+				"js/game/coderobot.worker.js",
+				"js/site/site.ranking.js",
+				"js/site/site.message.js"
+			]
+		},
+		"ace_all": {
+			"cmd": "concat_compress",
+			"target": "js/ace.all.js",
+			"source": [
+				"js/ace/ace.js",
+                "js/ace/mode-javascript.js",
+                "js/ace/theme-tumblr.js"
+			]
+		},
+		"share_all": {
+			"cmd": "concat_compress",
+			"target": "js/share.all.js",
+			"source": [
+				"js/site/site.sharebox.js",
+                "js/site/site.shareapi.js",
+                "js/site/site.share.js"
+			]
+		},
+		"ispriter": {
+			"cmd": "ispriter|compress,copy",
+			"source": "style/",
+			"target": "spriteout/",
+			"params": [
+				null,
+				[{
+					"fileFormat": "css"
+				},{
+					"fileFormat": "png"
+				}]
+			]
+		}
+	}
+}
