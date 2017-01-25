@@ -30,21 +30,19 @@ body {
 
 #content {
 	width: 290px;
-  float: left;
 	padding: 5px 15px;
 }
 
 #middle {
 	width: 294px; /* Account for margins + border values */
 	padding: 5px 15px;
-  float: left;
+
 	margin: 0px 5px 5px 5px;
 }
 
 #sidebar {
 	width: 270px;
 	padding: 5px 15px;
-  float: left;
 }
 
 #taskmargins {
@@ -62,5 +60,10 @@ body {
 #content, #middle, #sidebar {
 	margin-bottom: 5px;
   border: solid 1px #ccc;
+  display: inline-block;
+}
+
+.wrapper {
+  white-space: nowrap;
 }
 
