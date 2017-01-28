@@ -2,7 +2,7 @@
 
 Our mission is to create a better way of scrumming with a better scrum board experience.
 
-Team Memebers:
+Team Members:
 
 Yupin Hu	                yhu98@ucsc.edu
 
