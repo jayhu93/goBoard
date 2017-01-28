@@ -1,3 +1,10 @@
-<h1 [ng2-draggable]="true">
-  {{title}}
-</h1>
+<input #note (blur)="onPress(note.value); note.value=''">
+<button (click)="onPress(note.value)">Add</button>
+
+
+
+<div class="outer">
+    <div class="notePos"[ng2-draggable]="true" *ngFor="let n of notes">
+        {{n.desc}}
+    </div>
+</div>

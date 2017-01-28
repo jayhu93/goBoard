@@ -1,0 +1,7 @@
+.outer {
+    position: absolute;
+}
+.notePos {
+    position: absolute;
+    color: blue;
+}
