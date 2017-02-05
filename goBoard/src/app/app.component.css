@@ -1,7 +1,57 @@
+.h1 {
+    text-align: center;
+    display: block;
+}
+
+.montFont {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .outer {
     position: absolute;
 }
 .notePos {
+    background: #fff;
+    display: block;
+    width: 150px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.notePosNext {
     position: absolute;
-    color: blue;
+    top: 20px;
+    left: 45%;
+    z-index: 1;
+}
+
+/*
+.
+.
+.
+*/
+
+div.form {
+    display: block;
+    text-align: center;
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    text-align: left;
+}
+.search {
+    padding:8px 100px;
+    background:rgba(50, 50, 50, 0.2);
+    border:0px solid #dbdbdb;
+}
+.button {
+    position:relative;
+    padding:6px 15px;
+    left:-8px;
+    background-color:#4285F4;
+    color:#fafafa;
 }

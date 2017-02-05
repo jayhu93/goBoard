@@ -1,10 +1,24 @@
-<input #note (blur)="onPress(note.value); note.value=''">
-<button (click)="onPress(note.value)">Add</button>
+<div class="form">
+    <h1>
+        <span class="montFont" style="color: #4285F4">g</span>
+        <span class="montFont" style="color: #34A853">o</span>
+        <span class="montFont" style="color: #FBBC05">B</span>
+        <span class="montFont" style="color: #EA4335">o</span>
+        <span class="montFont" style="color: #4285F4">a</span>
+        <span class="montFont" style="color: #34A853">r</span>
+        <span class="montFont" style="color: #EA4335">d</span>
+        </h1>
+</div>
 
+<div class="form">
+    <form>
+        <input class="search" placeholder="Type description..." #note (blur)="onPress(note.value); note.value=''">
+        <button class="button" (keyup.enter)="onPress(note.value)">Create!</button>
+    </form>
+</div>
 
-
-<div class="outer">
-    <div class="notePos"[ng2-draggable]="true" *ngFor="let n of notes">
-        {{n.desc}}
+<div class="outer" [ng2-draggable]="true" *ngFor="let n of notes">
+    <div class="notePos notePosNext">
+         {{n.desc}}
     </div>
 </div>
