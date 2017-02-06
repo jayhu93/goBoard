@@ -11,13 +11,13 @@
     position: absolute;
 }
 .notePos {
-    background: #fff;
+    background: #ffd685;
     display: block;
     width: 150px;
     height: 100px;
     padding: 10px;
     border-radius: 2px 2px 2px 2px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 12px 12px 20px -10px rgba(0,0,0,0.65);
     word-wrap: break-word;
     overflow: scroll;
 }
@@ -26,6 +26,11 @@
     top: 20px;
     left: 45%;
     z-index: 1;
+}
+/*   Remove Highlight */
+input:focus, select:focus,
+textarea:focus, button:focus {
+    outline: none;
 }
 
 /*
@@ -52,10 +57,21 @@ form {
 }
 .button {
     position:relative;
-    padding:6px 15px;
-    left:-8px;
-    background-color:#4285F4;
+    padding: 8px 15px;
+    left: -5px;
+    background-color: #4285F4;
     color:#fafafa;
+    border: none;
+}
+.button:hover,
+.button.hover {
+    background-color: #3b77db;
+    text-shadow: -1px 1px #274f92;
+}
+.button:active,
+.button.active {
+    background-color: #346ac3;
+    text-shadow: -1px 1px #132749;
 }
 
 /* Animation Note Cards */
