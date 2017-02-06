@@ -7,12 +7,13 @@
 <div class="form montFont top-animation">
     <form>
         <input class="search" placeholder="Type description..." #note (blur)="onPress(note.value); note.value=''">
-        <button class="button" (keyup.enter)="onPress(note.value)">Create!</button>
+        <button class="button" (click)="onPress(note.value); note.value=''">Create!</button>
     </form>
 </div>
 
 <div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
     <div [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
+        <button style="float: right; color: #EA4335">x</button>
          <p>{{n.desc}}</p>
     </div>
 </div>
