@@ -18,6 +18,8 @@
     padding: 10px;
     border-radius: 2px 2px 2px 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    word-wrap: break-word;
+    overflow: scroll;
 }
 .notePosNext {
     position: absolute;
@@ -54,4 +56,18 @@ form {
     left:-8px;
     background-color:#4285F4;
     color:#fafafa;
+}
+
+/* Animation Note Cards */
+@keyframes noteAnimation {
+  0% {
+    margin-left: 150px;
+  }
+  100% {
+    margin-left: 0px;
+  } 
+}
+
+.note-animation {
+  animation: noteAnimation 1s;
 }
