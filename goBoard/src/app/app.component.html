@@ -10,15 +10,15 @@
         </h1>
 </div>
 
-<div class="form">
+<div class="form mon">
     <form>
         <input class="search" placeholder="Type description..." #note (blur)="onPress(note.value); note.value=''">
         <button class="button" (keyup.enter)="onPress(note.value)">Create!</button>
     </form>
 </div>
 
-<div class="outer" [ng2-draggable]="true" *ngFor="let n of notes">
-    <div class="notePos notePosNext">
-         {{n.desc}}
+<div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
+    <div id="absolute-div" class="notePos note-animation notePosNext">
+         <p>{{n.desc}}</p>
     </div>
 </div>
