@@ -89,7 +89,7 @@ form {
 }
 
 .note-animation {
-  animation: noteAnimation 1s;
+  animation: noteAnimation 0.5s;
 }
 
 /* Animation goBoard title */
@@ -104,5 +104,5 @@ form {
 }
 
 .top-animation {
-  animation: topAnimation 2s;
+  animation: topAnimation 0.8s;
 }
