@@ -11,7 +11,7 @@
     position: absolute;
 }
 .notePos {
-    background: #ffd685;
+    /*background: #ffd685;*/
     display: block;
     width: 150px;
     height: 100px;
