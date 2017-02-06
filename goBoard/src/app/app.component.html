@@ -1,3 +1,4 @@
+<script src="../js/randomcolors.js"></script>
 <div class="form">
     <h1>
         <span class="montFont" style="color: #4285F4">g</span>
@@ -10,7 +11,7 @@
         </h1>
 </div>
 
-<div class="form mon">
+<div class="form montFont">
     <form>
         <input class="search" placeholder="Type description..." #note (blur)="onPress(note.value); note.value=''">
         <button class="button" (keyup.enter)="onPress(note.value)">Create!</button>
@@ -18,7 +19,7 @@
 </div>
 
 <div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
-    <div id="absolute-div" class="notePos note-animation notePosNext">
+    <div [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
          <p>{{n.desc}}</p>
     </div>
 </div>
