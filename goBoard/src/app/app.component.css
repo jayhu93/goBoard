@@ -11,7 +11,6 @@
     position: absolute;
 }
 .notePos {
-    /*background: #ffd685;*/
     display: block;
     width: 150px;
     height: 100px;
@@ -86,4 +85,19 @@ form {
 
 .note-animation {
   animation: noteAnimation 1s;
+}
+
+/* Animation goBoard title */
+@keyframes topAnimation {
+  0% {
+    margin-top: -200px;
+  }
+  100% {
+
+    margin-top: 0px;
+  } 
+}
+
+.top-animation {
+  animation: topAnimation 2s;
 }

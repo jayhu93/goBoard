@@ -8,7 +8,8 @@ import { Notes } from './notes';
 })
 export class AppComponent {
   notes = [];
-  colorlist = ['#ffd685', '#7aa9f7', '#99d3a9', '#f4a19a'];
+  colorlist = ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB',
+    '#B2EBF2', '#B2DFDB', '#C8E6C9', '#F0F4C3', '#FFECB3', '#FFE0B2', '#FFCCBC'];
   randomNumber;
   rcolor;
 

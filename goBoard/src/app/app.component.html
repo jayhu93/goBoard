@@ -1,5 +1,4 @@
-<script src="../js/randomcolors.js"></script>
-<div class="form">
+<div class="form top-animation">
     <h1>
         <span class="montFont" style="color: #4285F4">g</span>
         <span class="montFont" style="color: #34A853">o</span>
@@ -11,7 +10,7 @@
         </h1>
 </div>
 
-<div class="form montFont">
+<div class="form montFont top-animation">
     <form>
         <input class="search" placeholder="Type description..." #note (blur)="onPress(note.value); note.value=''">
         <button class="button" (keyup.enter)="onPress(note.value)">Create!</button>
