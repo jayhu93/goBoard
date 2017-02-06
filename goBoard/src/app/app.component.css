@@ -1,6 +1,5 @@
 .h1 {
     text-align: center;
-    display: block;
 }
 
 .montFont {
@@ -17,7 +16,7 @@
 }
 .notePos {
     display: block;
-    width: 150px;
+    width: 200px;
     height: 100px;
     padding: 10px;
     border-radius: 2px 2px 2px 2px;
@@ -33,7 +32,7 @@
 }
 /*   Remove Highlight */
 input:focus, select:focus,
-textarea:focus, button:focus {
+textarea:focus, button:focus, p:focus {
     outline: none;
 }
 
@@ -55,12 +54,13 @@ form {
     text-align: left;
 }
 .search {
-    padding:8px 100px;
-    background:rgba(50, 50, 50, 0.2);
-    border:0px solid #dbdbdb;
+    padding: 8px;
+    width: 500px;
+    background: rgba(50, 50, 50, 0.2);
+    border: 0px solid #dbdbdb;
 }
 .button {
-    position:relative;
+    position: relative;
     padding: 8px 15px;
     left: -5px;
     background-color: #4285F4;
@@ -81,7 +81,7 @@ form {
 /* Animation Note Cards */
 @keyframes noteAnimation {
   0% {
-    margin-left: 150px;
+    margin-left: 100px;
   }
   100% {
     margin-left: 0px;
@@ -95,7 +95,7 @@ form {
 /* Animation goBoard title */
 @keyframes topAnimation {
   0% {
-    margin-top: -200px;
+    margin-top: -150px;
   }
   100% {
 

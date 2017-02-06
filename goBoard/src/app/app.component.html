@@ -13,7 +13,6 @@
 
 <div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
     <div [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
-        <button style="float: right; color: #EA4335">x</button>
-         <p>{{n.desc}}</p>
+         <p contenteditable="true">{{n.desc}}</p>
     </div>
 </div>
