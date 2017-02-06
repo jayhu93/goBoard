@@ -7,6 +7,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.cursiveFont {
+    font-family: 'Cedarville Cursive', cursive;
+    font-size: 36px;
+}
+
 .outer {
     position: absolute;
 }
