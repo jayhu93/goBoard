@@ -13,7 +13,8 @@
 
 <div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
     <div [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
-         <p contenteditable="true">{{n.desc}}</p>
+         <p contenteditable="true" >{{n.desc}}</p>
+         <button (click)="removeNote(n)">remove</button>
     </div>
 </div>
 

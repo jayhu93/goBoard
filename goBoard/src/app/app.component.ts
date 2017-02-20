@@ -16,17 +16,13 @@ export class AppComponent {
   onPress(note: string) {
         this.randomNumber = Math.floor(Math.random() * this.colorlist.length);
         this.rcolor = this.colorlist[this.randomNumber];
-        
         if (note)
           this.notes.push(new Notes(note, this.rcolor));
-
         //console.log(JSON.stringify(note));
-    }
-/*
-    removeNote(note: Notes)
-    {
-      var index = this.notes.indexOf(note);
-      this.notes.splice(index, 1);
-    }
-    */
+  }
+  removeNote(note: Notes)
+  {
+    this.notes.splice(this.notes.indexOf(note), 1);
+  }
+    
 }
