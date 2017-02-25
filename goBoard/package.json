@@ -22,17 +22,17 @@
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angular/router": "^3.3.1",
     "core-js": "^2.4.1",
+    "ng2draggable": "^1.2.5",
     "rxjs": "^5.0.1",
+    "socket.io-client": "^1.7.3",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.2",
-    "ng2draggable":  "^1.2.5",
-    "webpack": "^0.0.0",
-    "webpack-dev-server": "^0.0.0"
+    "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
+    "@types/socket.io-client": "^1.4.27",
     "angular-cli": "1.0.0-beta.25.5",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
