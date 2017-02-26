@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Notes } from './notes';
 import { AppService } from './app.service';
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,27 @@ import { AppService } from './app.service';
   providers: [AppService]
 })
 
+
 export class AppComponent {
+  
   /*     Messaging socket.io Stuff    */
   messages = [];
   connection;
   message;
-
-  constructor (private appService:AppService) {}
+ 
+  user = {};
+  
+  constructor (private appService:AppService, public af: AngularFire) {
+    this.af.auth.subscribe(user => {
+      if (user) {
+        // user is logged in
+        this.user = user;
+      }
+      else {
+        this.user = {};
+      }
+    });
+  }
 
   sendMessage() 
   {
@@ -36,8 +51,17 @@ export class AppComponent {
     this.connection.unsubscribe();
   }
 
+   /* Firebase stuff */
+   login() {
+     this.af.auth.login({
+       provider: AuthProviders.Google,
+       method: AuthMethods.Popup
+     });
+   }
 
-
+   logout() {
+     this.af.auth.logout();
+   }
 
   /*     Note Stuff      */
   public notes: Array<Notes> = [];
