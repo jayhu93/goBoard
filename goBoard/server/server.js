@@ -12,6 +12,7 @@ io.on('connection', (socket) => {
   socket.on('add-message', (message) => {
     io.emit('message', {type:'new-message', text: message});    
   });
+
 });
 
 http.listen(5000, () => {
