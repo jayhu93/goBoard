@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { Draggable } from 'ng2draggable/draggable.directive';
+import { AuthService } from './providers/auth.service';
 
 /* Firebase */
 import { 
@@ -12,6 +14,9 @@ import {
   AuthMethods, 
   AuthProviders 
 } from "angularfire2";
+
+import { LoginPageComponent } from './login-page/login-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtEFa6iU7OIn73IlolN-PF4kUF6tuCOy8",
@@ -21,20 +26,26 @@ const firebaseConfig = {
   messagingSenderId: "351423815295"
 };
 
+const routes: Routes = [
+  {path: '', component: HomePageComponent},
+  {path: 'login', component: LoginPageComponent}
+]
+
 @NgModule({
   declarations: [
     AppComponent,
-    Draggable
+    Draggable,
+    LoginPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig,{
-      provider: AuthProviders.Google,
-      method: AuthMethods.Popup })
+    AngularFireModule.initializeApp(firebaseConfig),
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

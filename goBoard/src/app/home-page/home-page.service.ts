@@ -2,7 +2,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
-export class AppService {
+export class HomePageService {
   private url = 'http://localhost:5000';
   private socket;
 
