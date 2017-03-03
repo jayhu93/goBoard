@@ -1,3 +1,7 @@
+<div style="top: 0; right: 0; float: right" (click)="isHidden = !isHidden">
+    <img src="../../images/chaticon.png" style="border: none; width: 25px; height: 25px">
+</div>
+
 <button class="button" style="float: left" (click)="logout()">Logout</button>
 
 
@@ -6,6 +10,7 @@
         go<span style="color: #4285F4">Board</span>
         </h1>
 </div>
+
 
 <div class="form montFont top-animation">
     <form>
@@ -21,17 +26,17 @@
     </div>
 </div>
 
-
-<div id="container">
-    <div class="title">Chat box</div>
-    <div #scrollMe class="chatbox">
-            <div class="text" *ngFor="let message of messages">
-                {{message.text}}
-            </div>
-            <div class="textbox">
-            <input type="text" placeholder="Chat here..." (keyup.enter)="sendMessage()" [(ngModel)]="message" />
-            </div>
+<div *ngIf="isHidden">
+    <div class="montFont" id="container">
+        <div class="title">Chat box</div>
+        <div #scrollMe class="chatbox">
+               <div class="text" *ngFor="let message of messages">
+                    {{message.text}}
+                </div>
+                <div class="textbox">
+                <input type="text" placeholder="Chat here..." (keyup.enter)="sendMessage()" [(ngModel)]="message" />
+                </div>
+        </div>
     </div>
 </div>
-
 
