@@ -1,4 +1,4 @@
-<button class="button" style="float: right" (click)="logout()">Logout</button>
+<button class="button" style="float: left" (click)="logout()">Logout</button>
 
 
 <div class="form top-animation">
@@ -22,16 +22,14 @@
 </div>
 
 
-
 <div id="container">
     <div class="title">Chat box</div>
-    <div class="chatbox">
+    <div #scrollMe class="chatbox">
             <div class="text" *ngFor="let message of messages">
                 {{message.text}}
             </div>
             <div class="textbox">
-            <input [(ngModel)]="message" />
-            <button class="sendButton" (click)="sendMessage()">Send</button>
+            <input type="text" placeholder="Chat here..." (keyup.enter)="sendMessage()" [(ngModel)]="message" />
             </div>
     </div>
 </div>

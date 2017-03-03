@@ -1,11 +1,10 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Notes } from './notes';
 import { HomePageService } from './home-page.service';
 import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
-import { ReversePipe } from './home-page.pipe';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +13,19 @@ import { ReversePipe } from './home-page.pipe';
   providers: [HomePageService]
 })
 
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, AfterViewChecked {
+
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+  
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { console.log('Scroll to bottom failed yo!') }
+  }
 
   /*     Messaging socket.io Stuff    */
   messages = [];
