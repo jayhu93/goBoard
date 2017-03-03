@@ -1,7 +1,4 @@
-<div *ngIf="isLoggedIn">
-  <p>Logged In: {{ user_email }}</p>
-</div>
-<button class="btn btn-default" (click)="logout()">Logout</button>
+<button class="button" style="float: right" (click)="logout()">Logout</button>
 
 
 <div class="form top-animation">
@@ -19,13 +16,24 @@
 
 <div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
     <div [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
+        <button class="delete" (click)="removeNote(n)">X</button>
          <p contenteditable="true" >{{n.desc}}</p>
-         <button (click)="removeNote(n)">remove</button>
     </div>
 </div>
 
-<div *ngFor="let message of messages">
-    {{ (af.auth | async)?.auth.email }}: {{message.text}}
+
+
+<div id="container">
+    <div class="title">Chat box</div>
+    <div class="chatbox">
+            <div class="text" *ngFor="let message of messages">
+                {{message.text}}
+            </div>
+            <div class="textbox">
+            <input [(ngModel)]="message" />
+            <button class="sendButton" (click)="sendMessage()">Send</button>
+            </div>
+    </div>
 </div>
-<input [(ngModel)]="message" />
-<button (click)="sendMessage()">Send</button>
+
+

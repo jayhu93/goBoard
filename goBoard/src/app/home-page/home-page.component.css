@@ -106,3 +106,54 @@ form {
 .top-animation {
   animation: topAnimation 0.8s;
 }
+
+.delete {
+    float: right;
+    border: none;
+    color: red;
+    background: rgba(0,0,0,0);
+    text-shadow: 1px 1px #132749;
+}
+
+/*  Chat box */
+#container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    border: 1px solid #999;
+}
+
+.chatbox {
+    display: inline-block;
+    vertical-align: bottom;
+    position: relative;
+    margin: 25px 5px;
+    pointer-events: auto;
+    overflow: auto;
+    width: 200px;
+    max-height: 200px;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+.title {
+    padding: 0.5em;
+    background-color: #4285F4;
+    color: white;
+}
+
+.textbox {
+    position: fixed;
+    width: 200px;
+    bottom: 10px;
+    right: 0;
+}
+
+.text {
+    padding: 5px;
+}
+
+
+
+

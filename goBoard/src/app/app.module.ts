@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { ReversePipe } from './home-page/home-page.pipe';
 
 import { AppComponent } from './app.component';
 import { Draggable } from 'ng2draggable/draggable.directive';
@@ -36,7 +37,8 @@ const routes: Routes = [
     AppComponent,
     Draggable,
     LoginPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

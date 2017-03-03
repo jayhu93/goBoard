@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Notes } from './notes';
 import { HomePageService } from './home-page.service';
 import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
+import { ReversePipe } from './home-page.pipe';
 
 @Component({
   selector: 'app-home-page',
@@ -12,6 +13,7 @@ import { AngularFire } from 'angularfire2';
   styleUrls: ['./home-page.component.css'],
   providers: [HomePageService]
 })
+
 export class HomePageComponent implements OnInit {
 
   /*     Messaging socket.io Stuff    */
