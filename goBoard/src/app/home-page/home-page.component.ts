@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit, AfterViewChecked {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { console.log('Scroll to bottom failed yo!') }
+    } catch(err) { console.log('Failed to scroll to bottom') }
   }
 
   /*     Messaging socket.io Stuff    */
@@ -33,9 +33,7 @@ export class HomePageComponent implements OnInit, AfterViewChecked {
   message;
   user = {};
 
-  private isLoggedIn: Boolean;
-  private user_displayName: String;
-  private user_email: String;
+  private isHidden = false;
   
   constructor (private af: AngularFire, private homepageService:HomePageService, private authService: AuthService, private router: Router) {
    this.af.auth.subscribe(user => {
