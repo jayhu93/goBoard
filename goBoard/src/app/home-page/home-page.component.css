@@ -128,7 +128,7 @@ form {
     display: inline-block;
     vertical-align: bottom;
     position: relative;
-    margin: 25px 5px;
+    margin: 15px 5px;
     pointer-events: auto;
     overflow: auto;
     width: 200px;
@@ -146,12 +146,12 @@ form {
 .textbox {
     position: fixed;
     width: 200px;
-    bottom: 10px;
+    bottom: 5px;
     right: 0;
 }
 
 .text {
-    padding: 5px;
+    padding: 10px;
 }
 
 
