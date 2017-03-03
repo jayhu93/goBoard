@@ -5,6 +5,7 @@ import { HomePageService } from './home-page.service';
 import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
+import {ResizeEvent} from 'angular-resizable-element';
 
 @Component({
   selector: 'app-home-page',
@@ -91,6 +92,10 @@ export class HomePageComponent implements OnInit, AfterViewChecked {
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);
+  }
+
+  onResizeEnd(event: ResizeEvent): void {
+    console.log('Element was resized', event);
   }
 
 }

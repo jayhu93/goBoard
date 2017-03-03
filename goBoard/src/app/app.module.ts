@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { Draggable } from 'ng2draggable/draggable.directive';
 import { AuthService } from './providers/auth.service';
 
+import {ResizableModule} from 'angular-resizable-element';
+
 /* Firebase */
 import { 
   AngularFireModule, 
@@ -43,9 +45,10 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ResizableModule
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

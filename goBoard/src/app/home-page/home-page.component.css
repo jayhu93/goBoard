@@ -154,6 +154,16 @@ form {
     padding: 10px;
 }
 
+.background {
+    background-image: url('/images/whiteboard.jpg');
+    width: 1000px;
+    height: 500px;
+    background-size: 100% 100%;
+    border: 1px solid lightgray;
+    background-repeat: no-repeat;
 
+    resize: both;
+    overflow: auto;
 
-
+    z-index: 1;
+}
