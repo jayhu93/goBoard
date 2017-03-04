@@ -10,7 +10,7 @@ io.on('connection', (socket) => {
   });
   
   socket.on('add-note', (note) => {
-    io.emit('note', {type:'new-note', note});    
+    io.emit('note', note);    
   });
 
 });

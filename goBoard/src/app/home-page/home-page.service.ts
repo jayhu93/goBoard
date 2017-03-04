@@ -6,9 +6,9 @@ export class HomePageService {
   private url = 'http://localhost:5000';
   private socket;
 
-  sendNote(note)
+  sendNote(noteArray)
   {
-    this.socket.emit('add-note', note);
+    this.socket.emit('add-note', noteArray);
   }
 
   getNotes()

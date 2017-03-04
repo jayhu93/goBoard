@@ -81,15 +81,15 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
     }, 100);
   }
   
-  descript: string;
+  descript: string = '';
   onPress(note: string) {
         this.randomNumber = Math.floor(Math.random() * this.colorlist.length);
         this.rcolor = this.colorlist[this.randomNumber];
         if (note) {
           this.descript = note;
           this.notes.push(new Notes(note, this.rcolor));
-          this.noteService.sendNote(this.notes);  
-          this.descript = '';        
+          this.noteService.sendNote(this.notes);
+          console.log("inside onPress", this.notes);
           
         // Debug
           setTimeout(() => {
@@ -105,7 +105,11 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
 
   ngOnInit() {
     this.connection = this.noteService.getNotes().subscribe(notes => {
-      this.notes.push(new Notes(this.descript, this.rcolor));
+      var len = this.notes.length;
+      if (notes[len] != null)
+        this.notes.push(notes[len]);
+      console.log("inside connection notes:", notes);
+      console.log("outside notes:", this.notes);
     });
   }
 
