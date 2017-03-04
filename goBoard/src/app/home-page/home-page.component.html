@@ -30,11 +30,12 @@
     <div class="montFont" id="container">
         <div class="title">Chat box</div>
         <div #scrollMe class="chatbox">
-               <div class="text" *ngFor="let message of messages">
-                    {{message.text}}
+               <div class="text" *ngFor="let item of items | async">
+                    <p style="color: darkblue; font-size: 10px">{{item.name}}:</p>
+                    <p style="font-size: 12px">{{item.message}}</p>
                 </div>
                 <div class="textbox">
-                <input type="text" placeholder="Chat here..." (keyup.enter)="sendMessage()" [(ngModel)]="message" />
+                <input type="text" placeholder="Chat here..." (keyup.enter)="sendMessage($event.target.value)" [(ngModel)]="msgVal" />
                 </div>
         </div>
     </div>

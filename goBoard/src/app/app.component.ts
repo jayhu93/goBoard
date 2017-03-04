@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   
   private isLoggedIn: Boolean;
-  private user_displayName: String;
+  public user_displayName: String;
   private user_email: String;
   
   constructor (private authService: AuthService, private router: Router) {
