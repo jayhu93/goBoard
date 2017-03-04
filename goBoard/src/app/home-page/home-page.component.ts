@@ -1,19 +1,21 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { Notes } from './notes';
-import { HomePageService } from './home-page.service';
 import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css'],
-  providers: [HomePageService]
+  styleUrls: ['./home-page.component.css']
 })
 
-export class HomePageComponent implements OnInit, AfterViewChecked {
+export class HomePageComponent implements AfterViewChecked {
+
+  // Hide chat
+  private isHidden = false;
 
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
@@ -26,45 +28,27 @@ export class HomePageComponent implements OnInit, AfterViewChecked {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch(err) { console.log('Failed to scroll to bottom') }
   }
-
-  /*     Messaging socket.io Stuff    */
-  messages = [];
-  connection;
-  message;
-  user = {};
-
-  private isHidden = false;
   
-  constructor (private af: AngularFire, private homepageService:HomePageService, private authService: AuthService, private router: Router) {
-   this.af.auth.subscribe(user => {
-      if (user) {
-        // user is logged in
-        this.user = user;
-      }
-      else {
-        this.user = {};
-      }
-    });
+  items: FirebaseListObservable<any>;
+  name: any;
+  msgVal: string;
+  
+  constructor (private af: AngularFire, private ac: AppComponent, private authService: AuthService, private router: Router) {
+    this.items = af.database.list('/messages');
+    this.name = ac.user_displayName;
   }
 
-  sendMessage() 
-  {
-    this.homepageService.sendMessage(this.message);
-    this.message = '';
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
   }
 
-  ngOnInit() 
-  {
-    this.connection = this.homepageService.getMessages().subscribe(message =>
-    {
-      this.messages.push(message);
-    })
+  
+  sendMessage(theirMessage: string) {
+    this.items.push({ message: theirMessage, name: this.name });
+    this.msgVal = '';
   }
-
-  ngOnDestroy()
-  {
-    this.connection.unsubscribe();
-  }
+  
 
   /*     Note Stuff      */
   public notes: Array<Notes> = [];
@@ -84,11 +68,4 @@ export class HomePageComponent implements OnInit, AfterViewChecked {
   {
     this.notes.splice(this.notes.indexOf(note), 1);
   }
-
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['login']);
-  }
-
 }
