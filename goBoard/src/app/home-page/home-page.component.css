@@ -16,14 +16,19 @@
 }
 .notePos {
     display: block;
-    width: 200px;
+    width: 175px;
     height: 100px;
     padding: 10px;
     border-radius: 2px 2px 2px 2px;
     box-shadow: 12px 12px 20px -10px rgba(0,0,0,0.65);
     word-wrap: break-word;
-    overflow: scroll;
+    overflow: hidden;
 }
+
+.notePos:hover {
+    overflow-y: scroll;
+}
+
 .notePosNext {
     position: absolute;
     top: 20px;

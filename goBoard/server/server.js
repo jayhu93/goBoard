@@ -9,8 +9,8 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
   
-  socket.on('add-message', (message) => {
-    io.emit('message', {type:'new-message', text: message});    
+  socket.on('add-note', (note) => {
+    io.emit('note', {type:'new-note', note});    
   });
 
 });

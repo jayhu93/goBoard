@@ -20,9 +20,9 @@
 </div>
 
 <div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
-    <div [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
+    <div id="note" (click)="onDrag(n)" [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
         <button class="delete" (click)="removeNote(n)">X</button>
-         <p contenteditable="true" >{{n.desc}}</p>
+         <p style="font-size: 13px" contenteditable="true" >{{n.desc}}</p>
     </div>
 </div>
 

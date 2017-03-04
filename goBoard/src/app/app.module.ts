@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { Draggable } from 'ng2draggable/draggable.directive';
-import { AuthService } from './providers/auth.service';
+import { AuthService } from './providers/auth.service';  
 
 /* Firebase */
 import { 
