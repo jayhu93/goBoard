@@ -81,15 +81,13 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
     }, 100);
   }
   
-  descript: string = '';
   onPress(note: string) {
         this.randomNumber = Math.floor(Math.random() * this.colorlist.length);
         this.rcolor = this.colorlist[this.randomNumber];
         if (note) {
-          this.descript = note;
           this.notes.push(new Notes(note, this.rcolor));
           this.noteService.sendNote(this.notes);
-          console.log("inside onPress", this.notes);
+          //console.log("inside onPress", this.notes);
           
         // Debug
           setTimeout(() => {
@@ -98,6 +96,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         }
         //console.log(JSON.stringify(note));
   }
+
 
   removeNote(note: Notes) {
     this.notes.splice(this.notes.indexOf(note), 1);
@@ -108,8 +107,8 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
       var len = this.notes.length;
       if (notes[len] != null)
         this.notes.push(notes[len]);
-      console.log("inside connection notes:", notes);
-      console.log("outside notes:", this.notes);
+      //console.log("inside connection notes:", notes);
+      //console.log("outside notes:", this.notes);
     });
   }
 
