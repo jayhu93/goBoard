@@ -36,12 +36,18 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
   items: FirebaseListObservable<any>;
   name: any;
   msgVal: string;
+
+  myNoteList: FirebaseListObservable<any>;
+  // myNote: Notes[];
+  myNote: string;
   
   constructor (private af: AngularFire, private ac: AppComponent, 
   private authService: AuthService, private router: Router, private _renderer: Renderer,
   private _el: ElementRef, private noteService: HomePageService) {
     this.items = af.database.list('/messages');
     this.name = ac.user_displayName;
+    this.myNoteList = af.database.list('/notes');
+    // this.myNoteList = af.database.list('/notes');
   }
 
   logout() {
@@ -51,10 +57,10 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
 
   
   sendMessage(theirMessage: string) {
-    this.items.push({ message: theirMessage, name: this.name });
+    this.items.push({ message: theirMessage, name: this.name});
     this.msgVal = '';
   }
-  
+
   
   /*     Note Stuff      */
   public notes: Array<Notes> = [];
@@ -87,7 +93,9 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         if (note) {
           this.notes.push(new Notes(note, this.rcolor));
           this.noteService.sendNote(this.notes);
-          //console.log("inside onPress", this.notes);
+          this.myNoteList.push({noteContent: note, color: this.rcolor});
+
+          console.log("inside onPress", this.notes);
           
         // Debug
           setTimeout(() => {
