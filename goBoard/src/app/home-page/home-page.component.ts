@@ -43,14 +43,12 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
 
   constructor (public af: AngularFire, public ac: AppComponent, 
   private authService: AuthService, private router: Router, private _renderer: Renderer,
-  private _el: ElementRef, private noteService: HomePageService, private someSharedService: SomeSharedService) {
+  private _el: ElementRef, private noteService: HomePageService) {
     this.items = af.database.list('/messages');
-    debugger;
-    this.someSharedService.globalVar = ac.user_displayName;
-    debugger;
-    if (ac.isLoggedIn == true) {
+
+
       this.name = ac.user_displayName;
-    }
+    
     debugger;
     this.myNoteList = af.database.list('/notes');
     // this.myNoteList = af.database.list('/notes');
