@@ -41,7 +41,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
   // myNote: Notes[];
   myNote: string;
 
-  constructor (private af: AngularFire, public ac: AppComponent, 
+  constructor (public af: AngularFire, public ac: AppComponent, 
   private authService: AuthService, private router: Router, private _renderer: Renderer,
   private _el: ElementRef, private noteService: HomePageService, private someSharedService: SomeSharedService) {
     this.items = af.database.list('/messages');
