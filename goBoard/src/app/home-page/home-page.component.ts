@@ -34,29 +34,40 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
   }
   
   items: FirebaseListObservable<any>;
-  name: any;
+  name: string;
   msgVal: string;
 
   myNoteList: FirebaseListObservable<any>;
   // myNote: Notes[];
   myNote: string;
-  
-  constructor (private af: AngularFire, private ac: AppComponent, 
+
+  constructor (private af: AngularFire, public ac: AppComponent, 
   private authService: AuthService, private router: Router, private _renderer: Renderer,
-  private _el: ElementRef, private noteService: HomePageService) {
+  private _el: ElementRef, private noteService: HomePageService, private someSharedService: SomeSharedService) {
     this.items = af.database.list('/messages');
-    this.name = ac.user_displayName;
+    debugger;
+    this.someSharedService.globalVar = ac.user_displayName;
+    debugger;
+    if (ac.isLoggedIn == true) {
+      this.name = ac.user_displayName;
+    }
+    debugger;
     this.myNoteList = af.database.list('/notes');
     // this.myNoteList = af.database.list('/notes');
+
   }
 
+
   logout() {
-    this.authService.logout();
+    // this.authService.logout();
     this.router.navigate(['login']);
   }
 
   
   sendMessage(theirMessage: string) {
+    if (this.ac.isLoggedIn == true) {
+      this.name = this.ac.user_displayName;
+    }
     this.items.push({ message: theirMessage, name: this.name});
     this.msgVal = '';
   }
