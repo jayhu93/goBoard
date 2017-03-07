@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './providers/auth.service';
 import { Router } from '@angular/router';
+import {} from 'jasmine';
 
 @Component({
   selector: 'app-root',
