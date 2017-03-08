@@ -1,4 +1,4 @@
-export class Notes {
+export class Note {
     desc: string;
     bgcolor: string;
     constructor (desc: string, bgcolor: string)

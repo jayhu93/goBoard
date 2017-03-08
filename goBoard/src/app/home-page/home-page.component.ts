@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Renderer } from '@angular/core';
 import { OnDestroy } from '@angular/core';
-import { Notes } from './notes';
+import { Note } from './note';
 import { AuthService } from '../providers/auth.service';
 import { Router } from '@angular/router';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
@@ -15,11 +15,37 @@ import { HomePageService } from './home-page.service';
 })
 
 export class HomePageComponent implements AfterViewChecked, OnDestroy {
+  
+  public notes: Array<Note> = [];
+  colorlist = ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB',
+    '#B2EBF2', '#B2DFDB', '#C8E6C9', '#F0F4C3', '#FFECB3', '#FFE0B2', '#FFCCBC'];
+  randomNumber;
+  rcolor;
+
+  private x: Number;
+  private y: Number;
+  private rect: any;
+
+  myNoteList: FirebaseListObservable<any>;
+  items: FirebaseListObservable<any>;
+  name: string;
+  msgVal: string;
 
   connection;
 
-  // Hide chat
-  private isHidden = false;
+  private chatIsHidden = false;
+
+  constructor (public af: AngularFire, 
+  public ac: AppComponent, 
+  private authService: AuthService, 
+  private router: Router, 
+  private _renderer: Renderer,
+  private _el: ElementRef, 
+  private noteService: HomePageService) {
+    this.items = af.database.list('/messages');
+    this.name = ac.user_displayName;
+    this.myNoteList = af.database.list('/note');
+  }
 
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
@@ -32,36 +58,12 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch(err) {  }
   }
-  
-  items: FirebaseListObservable<any>;
-  name: string;
-  msgVal: string;
-
-  myNoteList: FirebaseListObservable<any>;
-  // myNote: Notes[];
-  myNote: string;
-
-  constructor (public af: AngularFire, public ac: AppComponent, 
-  private authService: AuthService, private router: Router, private _renderer: Renderer,
-  private _el: ElementRef, private noteService: HomePageService) {
-    this.items = af.database.list('/messages');
-
-
-      this.name = ac.user_displayName;
-    
-    debugger;
-    this.myNoteList = af.database.list('/notes');
-    // this.myNoteList = af.database.list('/notes');
-
-  }
-
 
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);
   }
 
-  
   sendMessage(theirMessage: string) {
     if (this.ac.isLoggedIn == true) {
       this.name = this.ac.user_displayName;
@@ -69,23 +71,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
     this.items.push({ message: theirMessage, name: this.name});
     this.msgVal = '';
   }
-
   
-  /*     Note Stuff      */
-  public notes: Array<Notes> = [];
-  colorlist = ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB',
-    '#B2EBF2', '#B2DFDB', '#C8E6C9', '#F0F4C3', '#FFECB3', '#FFE0B2', '#FFCCBC'];
-  randomNumber;
-  rcolor;
-
-
-
-
-  // Find coordinates debug
-  private x: Number;
-  private y: Number;
-  private rect: any;
-
   onDrag(note: string) {
     this.rect = document.getElementById('note').getBoundingClientRect();
     this.x = this.rect.left;
@@ -100,7 +86,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         this.randomNumber = Math.floor(Math.random() * this.colorlist.length);
         this.rcolor = this.colorlist[this.randomNumber];
         if (note) {
-          this.notes.push(new Notes(note, this.rcolor));
+          this.notes.push(new Note(note, this.rcolor));
           this.noteService.sendNote(this.notes);
           this.myNoteList.push({noteContent: note, color: this.rcolor});
 
@@ -114,8 +100,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         //console.log(JSON.stringify(note));
   }
 
-
-  removeNote(note: Notes) {
+  removeNote(note: Note) {
     this.notes.splice(this.notes.indexOf(note), 1);
   }
 
