@@ -57,7 +57,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
 
 
   logout() {
-    // this.authService.logout();
+    this.authService.logout();
     this.router.navigate(['login']);
   }
 
