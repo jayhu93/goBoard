@@ -44,7 +44,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         private noteService: HomePageService) {
         this.items = af.database.list('/messages');
         this.name = ac.user_displayName;
-        this.myNoteList = af.database.list('/note');
+        this.myNoteList = af.database.list('/notes');
     }
 
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
@@ -62,6 +62,10 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
     logout() {
         this.authService.logout();
         this.router.navigate(['login']);
+    }
+  
+    sendNoteToFirebase(note: Note) {
+        this.myNoteList.push({ desc: note.desc, bgcolor: note.bgcolor, x: note.x , y: note.y });
     }
 
     sendMessage(theirMessage: string) {
@@ -85,20 +89,23 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         }
     }
 
-    onPress(note: string) {
+    onPress(desc: string) {
         this.randomNumber = Math.floor(Math.random() * this.colorlist.length);
         this.rcolor = this.colorlist[this.randomNumber];
-        if (note) {
-            this.notes.push(new Note(note, this.rcolor, this.x, this.y));
+        if (desc) {
+            this.x = 0;
+            this.y = 0;
+            let note = new Note(desc, this.rcolor, this.x, this.y);
+            this.notes.push(note);
             this.noteService.sendNote(this.notes);
-            this.myNoteList.push({ noteContent: note, color: this.rcolor });
-
+            this.sendNoteToFirebase(note);
+          
             if (this.debug) {// Debug
                 console.log('inside onPress', this.notes);
                 setTimeout(() => {
                     console.log('note id', document.getElementById('note').getBoundingClientRect());
                 }, 1000);
-                console.log(JSON.stringify(note));
+                console.log(JSON.stringify(desc));
             }
         }
     }
