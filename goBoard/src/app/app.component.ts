@@ -15,7 +15,7 @@ export class AppComponent {
   public isLoggedIn: Boolean;
   public user_displayName: string;
   private user_email: String;
-  
+  private debug = false; // debug switch
   
   constructor (private authService: AuthService, private router: Router) {
     this.authService.af.auth.subscribe(
@@ -27,9 +27,9 @@ export class AppComponent {
           this.router.navigate(['login']);
         } else {
           this.isLoggedIn = true;
-          debugger;
+          if (this.debug) debugger;
           this.user_displayName = auth.google.displayName;
-          debugger;
+          if (this.debug) debugger;
           this.user_email = auth.google.email;
           this.router.navigate(['']);
         }
