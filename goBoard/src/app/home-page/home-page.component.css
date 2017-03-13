@@ -23,6 +23,7 @@
     box-shadow: 12px 12px 20px -10px rgba(0,0,0,0.65);
     word-wrap: break-word;
     overflow: hidden;
+    top: attr(top-value);
 }
 
 .notePos:hover {
@@ -160,6 +161,12 @@ form {
     padding: 10px;
 }
 
-
-
+.canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1440px;
+    height: 900px;
+    background-color: lightblue; 
+}
 

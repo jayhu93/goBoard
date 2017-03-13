@@ -1,3 +1,5 @@
+<div class="canvas">
+
 <div style="top: 0; right: 0; float: right" (click)="chatIsHidden = !chatIsHidden">
     <img src="../../images/chaticon.png" style="border: none; width: 25px; height: 25px">
 </div>
@@ -19,12 +21,16 @@
     </form>
 </div>
 
-<div class="outer montFont" [ng2-draggable]="true" *ngFor="let n of notes">
-    <div id="note" (click)="onDrag(n)" [style.background-color]="n.bgcolor" class="notePos note-animation notePosNext">
-        <button class="delete" (click)="removeNote(n)">X</button>
-         <p style="font-size: 13px" contenteditable="true" >{{n.desc}}</p>
+
+<div class="outer montFont" [ng2-draggable]="true" *ngFor="let item of myNoteList | async">
+     <div id="note" (click)="onDrag(item)" [style.background-color]="item.bgcolor" class="notePos note-animation notePosNext">
+        <button class="delete" (click)="removeNote(item)">X</button>
+         <p style="font-size: 13px" contenteditable="true" >{{item.desc | json}}</p>
     </div>
 </div>
+
+
+
 
 <div *ngIf="chatIsHidden">
     <div class="montFont" id="container">
@@ -41,3 +47,4 @@
     </div>
 </div>
 
+</div>

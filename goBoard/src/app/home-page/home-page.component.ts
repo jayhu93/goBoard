@@ -16,17 +16,13 @@ import { HomePageService } from './home-page.service';
 
 export class HomePageComponent implements AfterViewChecked, OnDestroy {
 
-    public notes: Array<Note> = [];
     colorlist = ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB',
         '#B2EBF2', '#B2DFDB', '#C8E6C9', '#F0F4C3', '#FFECB3', '#FFE0B2', '#FFCCBC'];
     randomNumber;
     rcolor;
     private debug = false;        // debug switch
-    private x: number;
-    private y: number;
-    private rect: any;
 
-    myNoteList: FirebaseListObservable<any>;
+    public myNoteList: FirebaseListObservable<Note[]>;
     items: FirebaseListObservable<any>;
     name: string;
     msgVal: string;
@@ -65,7 +61,7 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
     }
   
     sendNoteToFirebase(note: Note) {
-        this.myNoteList.push({ desc: note.desc, bgcolor: note.bgcolor, x: note.x , y: note.y });
+        this.myNoteList.push(note);
     }
 
     sendMessage(theirMessage: string) {
@@ -76,14 +72,20 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         this.msgVal = '';
     }
 
-    onDrag(note: Note) {
-        this.rect = document.getElementById('note').getBoundingClientRect();
-        this.x = this.rect.left;
-        this.y = this.rect.top;
-        note.setPosition(this.x, this.y);
+    onDrag(note) {
+        var rect = document.getElementById('note').getBoundingClientRect();
+        // this.sendNoteToFirebase(note);
+        note.x = rect.left;
+        note.y = rect.top;
+
+        this.myNoteList.update(note.$key, {x: rect.left, y: rect.top});
+
+        console.log("x: " + note.x);
+        console.log("y: " + note.y);
+        // note.setPosition(this.x, this.y);
         if (this.debug) {// Debug
             setTimeout(() => {
-                console.log(' realXY:', this.x, this.y);
+                // console.log(' realXY:', this.x, this.y);
                 console.log(' noteXY:', note.getX(), note.getY());
             }, 100);
         }
@@ -93,15 +95,11 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         this.randomNumber = Math.floor(Math.random() * this.colorlist.length);
         this.rcolor = this.colorlist[this.randomNumber];
         if (desc) {
-            this.x = 0;
-            this.y = 0;
-            let note = new Note(desc, this.rcolor, this.x, this.y);
-            this.notes.push(note);
-            this.noteService.sendNote(this.notes);
+            let note = new Note(desc, this.rcolor, 0, 0);
             this.sendNoteToFirebase(note);
           
             if (this.debug) {// Debug
-                console.log('inside onPress', this.notes);
+                console.log('inside onPress', note);
                 setTimeout(() => {
                     console.log('note id', document.getElementById('note').getBoundingClientRect());
                 }, 1000);
@@ -110,10 +108,14 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
         }
     }
 
-    removeNote(note: Note) {
-        this.notes.splice(this.notes.indexOf(note), 1);
+    removeNote(note) {
+        this.myNoteList.remove(note.$key);
     }
+    
+    
+    //web socket stuff, might not need it because we are using firebase?
 
+/*
     ngOnInit() {
         this.connection = this.noteService.getNotes().subscribe(notes => {
             let len = this.notes.length;
@@ -125,9 +127,11 @@ export class HomePageComponent implements AfterViewChecked, OnDestroy {
             }
         });
     }
+*/
 
     ngOnDestroy() {
         this.connection.unsubscribe();
     }
+
 
 }
