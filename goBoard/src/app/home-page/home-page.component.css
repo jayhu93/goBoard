@@ -160,10 +160,6 @@ form {
     padding: 10px;
 }
 
-table, th {
-    border: 1px solid black;
-}
-
 .background {
     background-image: url('/images/whiteboard.jpg');
     width: 1000px;
